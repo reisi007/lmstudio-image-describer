@@ -1,0 +1,22 @@
+{
+  "output": {
+    "filePath": "repomix-lid.md",
+    "style": "markdown",
+    fileSummary: true,
+    directoryStructure: true,
+    headerText: "File Modification Rule (CRITICAL):\n- Multi-line Regex for search-and-replace in code is STRICTLY FORBIDDEN. It is too brittle.\n- When patching, use exact string replacement or rewrite the entire file.\n- YOU MUST OUTPUT A STANDALONE \\`patch.mjs\\` SCRIPT containing the Node.js code to apply these changes (using the \\`fs\\` module).\n- Do not just output the raw code blocks. Act strictly as a script-generator for patches.\n"
+  },
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "public/**",
+      "assets/**",
+      "**/*.jpg",
+      "**/*.jpeg",
+      "**/*.png",
+      "**/*.gif",
+      "**/*.svg"
+    ]
+  }
+}
