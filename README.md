@@ -16,6 +16,13 @@ The application optimizes images client-side before sending them to your local s
 * **Batch Image Processing:** Queue up multiple files at once. The application handles them iteratively and displays results dynamically, placing newer entries right at the top.
 * **Real-time Connection Polling:** Uses SWR to check the live heartbeat status of your local LM Studio instance every 3 seconds.
 
+## **🌐 Live Demo**
+
+Try the hosted version (GitHub Pages):  
+➡️ **https://reisi007.github.io/lmstudio-image-describer/**
+
+> **Note:** A locally running LM Studio instance is still required for image analysis.
+
 ## **🛑 Prerequisites**
 
 To run this app successfully, you must have an active instance of **LM Studio** with a multimodal/vision-capable model loaded.
