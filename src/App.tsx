@@ -53,10 +53,16 @@ interface FormInputs {
   images: FileList;
 }
 
+interface ImageResult {
+  image: string;
+  filename: string;
+  json: unknown;
+}
+
 function MainApp() {
   const { t, i18n } = useTranslation();
   const [isShortMode, setIsShortMode] = useState(true);
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<ImageResult[]>([]);
   const [processingStatus, setProcessingStatus] = useState<string | null>(null);
 
   const { data: modelsData, error: modelsError } = useSWR('lmstudio-status', fetchModels, { 

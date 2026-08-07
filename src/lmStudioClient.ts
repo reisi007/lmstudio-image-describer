@@ -94,6 +94,6 @@ Language: ${targetLanguage}.`;
     return JSON.parse(rawContent);
   } catch (e) {
     console.error("Failed to parse JSON from LLM response. Raw output:", rawContent);
-    throw new Error("LLM did not return valid JSON");
+    throw new Error("LLM did not return valid JSON", { cause: e });
   }
 };
