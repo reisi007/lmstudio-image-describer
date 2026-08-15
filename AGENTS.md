@@ -45,3 +45,7 @@ pnpm preview   # vite preview (serves dist)
 - `vite.config.ts` reads `BASE_PATH` env var for the base URL (`process.env.BASE_PATH || '/'`),
   used when deploying under a sub-path (e.g. GitHub Pages).
 - Verification after any change: `pnpm typecheck` (via `tsc -b`), `pnpm build`, `pnpm lint`.
+
+## TODO (UI-Review)
+
+UI-Review-Screenshot-Skill noch nicht angewendet (Playwright-Harness + Vision-Analyse). Referenz: ocg-price-tracker/tests/screenshots (ui-screenshots.spec.ts mit Section-Captures).
