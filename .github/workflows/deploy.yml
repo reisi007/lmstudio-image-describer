@@ -3,22 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Build-Check für Dependabot-PRs: ohne diesen Trigger hätten sie keine
+  # CI-Checks, auf die der Auto-Merge-Workflow warten könnte.
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: build-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v7
 
@@ -39,5 +37,21 @@ jobs:
         with:
           path: dist
 
+  deploy:
+    # Nur echte Main-Pushes deployen - nie aus PR-Kontext heraus
+    # (Environment github-pages + OIDC sind dort nicht verfügbar).
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
