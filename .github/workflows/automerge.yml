@@ -24,6 +24,11 @@ jobs:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
+      # gh pr merge benoetigt ein lokales git repo als Kontext.
+      # pull_request_target checkt den BASE ref aus (main) - niemals
+      # PR-Code aus einem fremden Branch.
+      - uses: actions/checkout@v7
+
       - name: Fetch Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v3
