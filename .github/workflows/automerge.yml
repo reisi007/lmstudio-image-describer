@@ -62,10 +62,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 60
-          # CI (Vite-Build im deploy-Workflow) dauert wenige Minuten -
-          # Timeout großzügig (Sekunden)
-          timeout: 1200
-          allowed-conclusions: success
+          # deploy-Job ist auf PRs bewusst skipped -> skipped als ok werten
+          # (Default dieser Action, hier explizit dokumentiert)
+          allowed-conclusions: success,skipped
+          # Eigener Check heisst "automerge" (Job-Name) - ohne Exclusion
+          # wartet die Action auf sich selbst (Endlos-Warten)
+          running-workflow-name: automerge
 
       - name: Merge Dependabot PR
         if: steps.should-merge.outputs.result == 'true'
