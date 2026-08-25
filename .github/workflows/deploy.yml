@@ -7,6 +7,14 @@ on:
   # CI-Checks, auf die der Auto-Merge-Workflow warten könnte.
   pull_request:
     branches: [main]
+  # Auto-Merges passieren mit dem GITHUB_TOKEN - GitHub triggert daraus
+  # absichtlich KEINE push-Workflows (Rekursionsschutz). Nach erfolgreichem
+  # Auto-Merge-Run daher explizit den aktuellen main-Stand deployen.
+  workflow_run:
+    workflows: ["Dependabot Auto-Merge"]
+    types: [completed]
+  # Manueller Deploy (z.B. nach fehlgeschlagenem Pages-Run)
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,7 +26,12 @@ jobs:
       group: build-${{ github.ref }}
       cancel-in-progress: true
     steps:
+      # Bei workflow_run zeigt github.sha auf den Merge-ref-SHA des
+      # ausloesenden Runs - der Default-Branch (github.ref) ist die
+      # verlaessliche Quelle und enthaelt den Merge-Commit bereits.
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref }}
 
       - uses: pnpm/action-setup@v6
 
@@ -38,9 +51,12 @@ jobs:
           path: dist
 
   deploy:
-    # Nur echte Main-Pushes deployen - nie aus PR-Kontext heraus
-    # (Environment github-pages + OIDC sind dort nicht verfügbar).
-    if: github.event_name != 'pull_request'
+    # Nie aus PR-Kontext deployen (Environment github-pages + OIDC sind dort
+    # nicht verfuegbar); workflow_run nur nach erfolgreichem Auto-Merge.
+    if: >-
+      github.event_name != 'pull_request' &&
+      (github.event_name != 'workflow_run' ||
+       github.event.workflow_run.conclusion == 'success')
     needs: build
     runs-on: ubuntu-latest
     permissions:
