@@ -44,7 +44,11 @@ pnpm preview   # vite preview (serves dist)
   model alias `local-model`. CORS must be enabled on the LM Studio server.
 - `vite.config.ts` reads `BASE_PATH` env var for the base URL (`process.env.BASE_PATH || '/'`),
   used when deploying under a sub-path (e.g. GitHub Pages).
-- Verification after any change: `pnpm typecheck` (via `tsc -b`), `pnpm build`, `pnpm lint`.
+- Verification after any change: `pnpm typecheck` (via `tsc -b`), `pnpm build`,
+  `pnpm lint`. This list is the repo-specific part only. The flow around it — pull,
+  delegate, verify, commit, push, watch CI — is defined by the central skill
+  `build-verify` (agents-skills; always-on rule `.agents/rules/build-verify.md`).
+  Do not restate or override that flow here; change it there.
 
 ## TODO (UI-Review)
 
