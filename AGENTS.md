@@ -47,7 +47,7 @@ pnpm preview   # vite preview (serves dist)
 - Verification after any change: `pnpm typecheck` (via `tsc -b`), `pnpm build`,
   `pnpm lint`. This list is the repo-specific part only. The flow around it — pull,
   delegate, verify, commit, push, watch CI — is defined by the central skill
-  `build-verify` (agents-skills; always-on rule `.agents/rules/build-verify.md`).
+  `build-verify` (agents-skills; core rule `.agents/rules/build-verify.md`).
   Do not restate or override that flow here; change it there.
 
 ## TODO (UI-Review)
