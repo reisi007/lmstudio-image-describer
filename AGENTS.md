@@ -3,6 +3,13 @@
 A localized React SPA that sends client-side optimized images to a local LM Studio
 vision model and renders structured, type-safe JSON results.
 
+## Rules only, no decisions
+
+This file contains rules only — instructions that apply to any work in this repo.
+Durable decisions, rationale, measurements and history do not belong here but in
+`docs/`/`features/` (or the project docs); open work goes to `AGENTS.todo.md`,
+settled matters to git history.
+
 ## Tech Stack
 
 | Layer | Choice |
@@ -18,8 +25,7 @@ vision model and renders structured, type-safe JSON results.
 ## React Compiler
 
 The React Compiler is enabled in `vite.config.ts` via the `reactCompilerPreset()`
-Babel preset. The compiler memoizes automatically, so manual memoization is an
-antipattern:
+Babel preset, which memoizes automatically:
 
 - Do NOT use `useMemo`, `useCallback`, `React.memo`, or `forwardRef`.
 - Write plain functions and derive values inline; the compiler handles
@@ -49,7 +55,3 @@ pnpm preview   # vite preview (serves dist)
   delegate, verify, commit, push, watch CI — is defined by the central skill
   `build-verify` (agents-skills; core rule `.agents/rules/build-verify.md`).
   Do not restate or override that flow here; change it there.
-
-## TODO (UI-Review)
-
-UI-Review-Screenshot-Skill noch nicht angewendet (Playwright-Harness + Vision-Analyse). Referenz: ocg-price-tracker/tests/screenshots (ui-screenshots.spec.ts mit Section-Captures).
