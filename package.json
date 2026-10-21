@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
-    "i18next": "^26.4.3",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "i18next": "^26.5.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-hook-form": "^7.90.0",
-    "react-i18next": "^17.0.16",
+    "react-i18next": "^17.1.0",
     "react-router-dom": "^7.18.4",
     "swr": "^2.5.1"
   },
@@ -34,15 +34,15 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "babel-plugin-react-compiler": "^1.0.0",
-    "daisyui": "^5.7.47",
-    "eslint": "^10.12.0",
+    "daisyui": "^5.7.50",
+    "eslint": "^10.13.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
     "repomix": "^1.18.1",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.71.1",
+    "typescript-eslint": "^8.71.2",
     "vite": "^8.3.4"
   }
 }
