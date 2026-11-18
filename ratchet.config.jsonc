@@ -1,3 +1,18 @@
 [
   { "preset": "agent-rules" },
+  {
+    // A deliberate constant limit: `baseline raise` refuses auto rules, and the
+    // pre-existing unverified-commit count is a recorded fact, not a paydown.
+    "rules": {
+      "unverified-commits": {
+        "class": "a commit with no verification evidence",
+        "incident": "eight repositories carry a `Verify:` footer in 20 of 20 commits while ai-10-usd carries it in 3 of 20 — the convention exists, the enforcement does not",
+        "unit": "commits without a `Verify:` footer",
+        "direction": "ceiling",
+        "baseline": "fixed",
+        "description": "counts the commits of the history whose message has no `Verify:` line; a project with tagged releases narrows the window with `since`",
+        "count": { "agent_rule": "unverified-commits" }
+      }
+    }
+  },
 ]
