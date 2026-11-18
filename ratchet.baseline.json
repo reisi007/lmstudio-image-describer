@@ -17,7 +17,8 @@
       "value": 1
     },
     "unverified-commits": {
-      "value": 18
+      "value": 19,
+      "reason": "pre-existing drift: main commit 282aa81 (chore(ide): commit pre-existing .idea files) lacks a Verify: footer, pushing the count past the baseline; predates this v0.8.0 migration. Reducing requires a forbidden history rewrite."
     }
   }
 }
